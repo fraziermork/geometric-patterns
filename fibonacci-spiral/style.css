@@ -1,0 +1,167 @@
+.spiral-div {
+  outline: 1px black solid;
+  position: absolute;
+  border: 2px black solid;
+  margin: 10px;
+  border-collapse: collapse;
+}
+body {
+  width: 100%;
+  height: 900px;
+}
+.spiralHolder{
+  width: 90%;
+  position: relative;
+  height: 100%;
+}
+
+#spiral-0{
+  top: 150px;
+  left: 240px;
+  height: 8px;
+  width: 8px;
+}
+#spiral-1{
+  top: 150px;
+  left: 250px;
+  height: 8px;
+  width: 8px;
+  border-bottom-right-radius: 10px
+}
+#spiral-2{
+  top: 130px;
+  left: 240px;
+  height: 18px;
+  width: 18px;
+  border-top-right-radius: 20px;
+}
+#spiral-3{
+  top: 130px;
+  left: 210px;
+  height: 28px;
+  width: 28px;
+  border-top-left-radius:30px;
+}
+#spiral-4{
+  top: 160px;
+  left: 210px;
+  height:48px;
+  width: 48px;
+  border-bottom-left-radius: 50px;
+}
+#spiral-5{
+  top: 130px;
+  left: 260px;
+  height: 78px;
+  width: 78px;
+  border-bottom-right-radius: 80px;
+}
+#spiral-6{
+  top: 0px;
+  left: 210px;
+  height: 128px;
+  width: 128px;
+  border-top-right-radius: 130px;
+}
+#spiral-7{
+  top: 0px;
+  left: 0px;
+  height: 208px;
+  width: 208px;
+  border-top-left-radius: 210px;
+}
+#spiral-8{
+  top: 210px;
+  left: 0px;
+  height:338px;
+  width: 338px;
+  border-bottom-left-radius: 340px;
+}
+
+
+/*#spiral-0{*/
+  /*top: 27.2727%;*/
+  /*15/55*/
+  /*left: 70.5882%;*/
+    /*24/34*/
+  /*height:1.81818%;*/
+  /*1/55*/
+  /*width: 2.9412%;*/
+  /*1/34*/
+/*}*/
+/*#spiral-1{*/
+  /*top: 27.2727%;*/
+  /*15/55*/
+  /*left: 73.5294%;*/
+  /*25/34*/
+  /*height:1.81818%;*/
+  /*1/55*/
+  /*width: 2.9412%;*/
+  /*1/34*/
+/*}*/
+/*#spiral-2{*/
+  /*top: 23.6364%;*/
+  /*13/55*/
+  /*left: 70.5882%;*/
+  /*24/34*/
+  /*height:1.81818%;*/
+  /*2/55*/
+  /*width: 2.9412%;*/
+  /*2/34*/
+/*}*/
+/*#spiral-3{*/
+  /*top: 23.6364%;*/
+  /*13/55*/
+  /*left: 61.7647%;*/
+  /*21/34*/
+  /*height:1.81818%;*/
+  /*3/55*/
+  /*width: 2.9412%;*/
+  /*3/34*/
+/*}*/
+/*#spiral-4{*/
+  /*top: 29.0909%;*/
+  /*16/55*/
+  /*left: 61.7647%;*/
+  /*21/34*/
+  /*height:1.81818%;*/
+  /*5/55*/
+  /*width: 2.9412%;*/
+  /*5/34*/
+/*}*/
+/*#spiral-5{*/
+  /*top: 23.6364%;*/
+  /*13/55*/
+  /*left: 76.4706%;*/
+  /*26/34*/
+  /*height:14.5455%;*/
+  /*8/55*/
+  /*width: 2.9412%;*/
+  /*8/34*/
+/*}*/
+/*#spiral-6{*/
+  /*top: 0%;*/
+  /*left: 61.7647%;*/
+  /*21/34*/
+  /*height:23.6364%;*/
+  /*13/55*/
+  /*width: 38.2353%;*/
+  /*13/34*/
+/*}*/
+/*#spiral-7{*/
+  /*top: 0%;*/
+  /*left: 0%;*/
+  /*height:38.1818%;*/
+  /*21//5*/
+  /*width: 61.7647%;*/
+  /*21/34*/
+/*}*/
+/*#spiral-8{*/
+  /*top: 38.1818%;*/
+  /*21/55*/
+  /*left: 0%;*/
+  /*height:61.8182%;*/
+  /*21/55*/
+  /*width: 100%;*/
+  /*34/34*/
+/*}*/
