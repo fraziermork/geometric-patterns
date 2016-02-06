@@ -15,6 +15,7 @@
   /*outline: 1px black solid;*/
   width: 162%;
   border-radius: 10px;
+  border: 2px #FFECA7 solid;
 }
 .icon-menu{
   position: absolute;
@@ -112,6 +113,8 @@ html, body {
   text-align: center;
   /*width: 100%;*/
   border-radius: 10px;
+  border: 2px #796466 solid;
+  margin-top: 15%;
 }
 
 
@@ -157,7 +160,7 @@ small, .font_small {font-size: 0.618em;}
   background-color: #C1836A;
 }
 #spiral-chunk-1{
-  background-color: #DEA667;
+  background-color: #FFECA7;
 }
 #spiral-chunk-2{
   background-color: #47535E;
