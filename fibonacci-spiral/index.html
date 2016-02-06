@@ -2,33 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="content">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8">
     <title>Fibonacci-spiral</title>
 
     <script type="text/x-handlebars-template" id="spiral-chunk-template">
       <div class="spiral-chunk-wrapper" id="{{spiral-chunk-wrapper-id}}">
-        <div class="spiral-chunk" id="{{spiral-chunk-id}}" data-divType="{{divType}}">
+        <div class="spiral-chunk {{divType}}" id="{{spiral-chunk-id}}" data-divType="{{divType}}">
         </div>
       </div>
     </script>
 
   </head>
   <body>
-    <div class="spiral-holder" id="spiral-holder">
-
-
-
-      <!-- <div class="spiral-div" id="spiral-0"></div>
-      <div class="spiral-div" id="spiral-1"></div>
-      <div class="spiral-div" id="spiral-2"></div>
-      <div class="spiral-div" id="spiral-3"></div>
-      <div class="spiral-div" id="spiral-4"></div>
-      <div class="spiral-div" id="spiral-5"></div>
-      <div class="spiral-div" id="spiral-6"></div>
-      <div class="spiral-div" id="spiral-7"></div>
-      <div class="spiral-div" id="spiral-8"></div> -->
+    <div class="spiral-sizing-box">
+      <div class="spiral-holder" id="spiral-holder"></div>
     </div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="app.js"></script>

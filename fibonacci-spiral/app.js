@@ -14,12 +14,13 @@ SpiralChunk.prototype.initializeDivTypeAndIds = function(){
   this['spiral-chunk-wrapper-id'] = 'spiral-chunk-wrapper-' + this.spiralChunkNumber;
   this['spiral-chunk-id'] = 'spiral-chunk-' + this.spiralChunkNumber;
   if (this.direction === 'counterClockWise'){
-    this['divType'] = fibonacci.divtypesCCW[this.spiralChunkNumber % 4];
+    this['divType'] = fibonacci.divtypesCCW[0][this.spiralChunkNumber % 4];
+    this.borderRadiusPlacement = fibonacci.divtypesCCW[1][this.spiralChunkNumber % 4];
   } else {
     console.log('critical error--direction not recognized');
   }
-  this.boxSize = fibonacci.scale * this.sidelength;
-  this.percentSize = (100 * this.sidelength / fibonacci.totalWidth).toString() + '%';
+  // this.boxSize = fibonacci.scale * this.sidelength;
+  this.percentSize = (0.9 * 100 * this.sidelength / fibonacci.totalWidth);
   // this.percentSize = '50%';
   console.log('percent width for ' + this['spiral-chunk-wrapper-id'] + ' is ' + this.percentSize);
 }
@@ -31,9 +32,10 @@ var fibonacci = {
   spiralChunkList: [],
   totalHeight: 0,
   totalWidth: 0,
+  aspectRatio: 1,
   direction: 'counterClockWise',
-  divtypesCCW:['bottom', 'right', 'top', 'left'],
-  divtypesCW:['bottom', 'left', 'top', 'right'],
+  divtypesCCW:[['bottom', 'right', 'top', 'left'],['border-bottom-left-radius', 'border-bottom-right-radius', 'border-top-right-radius', 'border-top-left-radius']],
+  divtypesCW:[['bottom', 'left', 'top', 'right'],['border-top-right-radius', 'border-bottom-right-radius', 'border-bottom-left-radius', 'border-top-left-radius']],//might need to flip placement of 1st and 3rd element
 
   populateNumberArray: function(length){
     var thisNumber=1;
@@ -48,7 +50,6 @@ var fibonacci = {
   },
 
   determineSize: function(){
-    //working
     if (fibonacci.length > 1){
       if (fibonacci.length % 2 === 0){
         fibonacci.totalHeight = fibonacci.numberArray[fibonacci.length - 1];
@@ -61,19 +62,16 @@ var fibonacci = {
       fibonacci.totalHeight = fibonacci.numberArray[0];
       fibonacci.totalWidth = fibonacci.numberArray[0];
     }
+    fibonacci.aspectRatio = Math.ceil(fibonacci.totalHeight/fibonacci.totalWidth);
     console.log('fibonacci.totalHeight is ' + fibonacci.totalHeight);
     console.log('fibonacci.totalWidth is ' + fibonacci.totalWidth);
   },
 
   populateSpiralChunkList: function(){
-
     var topPos = 0, leftPos = 0, bottomPos = 0, rightPos = 0;
     for (var i = 0; i < fibonacci.numberArray.length; i++){
       var currentSpiralChunk = new SpiralChunk( i, fibonacci.numberArray[i], fibonacci.direction, 'black');
       currentSpiralChunk.initializeDivTypeAndIds();
-      // console.log('currentSpiralChunk for index ' + i + ' is:');
-      // console.log(currentSpiralChunk);
-
       fibonacci.spiralChunkList.push(currentSpiralChunk);
     }
   },
@@ -165,18 +163,42 @@ var fibonacci = {
       var newChunk = template(inputChunk);
       console.log(newChunk);
       $spiralHolder.append(newChunk);
-      inputChunk.absVerticalPosition = (100 * inputChunk.verticalPosition / fibonacci.totalHeight).toString() + '%';
+      inputChunk.absVerticalPosition = (0.9 * 100 * inputChunk.verticalPosition / fibonacci.totalWidth);
       console.log('inputChunk.absVerticalPosition is ' + inputChunk.absVerticalPosition);
-      inputChunk.absHorizontalPosition = (100 * inputChunk.horizontalPosition / fibonacci.totalWidth).toString() + '%';
+      inputChunk.absHorizontalPosition = (0.9 *100 * inputChunk.horizontalPosition / fibonacci.totalWidth);
       console.log('inputChunk.absHorizontalPosition is ' + inputChunk.absHorizontalPosition);
-      $('#' + inputChunk['spiral-chunk-wrapper-id']).width(inputChunk.percentSize).css('top', inputChunk.absVerticalPosition).css('left', inputChunk.absHorizontalPosition);
+      var unit = 'vw'
+      $('#' + inputChunk['spiral-chunk-wrapper-id']).width( inputChunk.percentSize + unit ).css('top', inputChunk.absVerticalPosition + unit).css('left', inputChunk.absHorizontalPosition + unit);
+      if (idx !== 0){
+        $('#' + inputChunk['spiral-chunk-id']).css(inputChunk.borderRadiusPlacement, '100%');
+      }
       // $('#' + inputChunk['spiral-chunk-wrapper-id']).width(inputChunk.boxSize).css('top', function(){ return inputChunk.verticalPosition * fibonacci.scale}).css('left', function(){ return inputChunk.horizontalPosition * fibonacci.scale});
     })
+  },
+  onWindowResize(){
+    console.log('resize');
+    $spiralSizingBox = $('spiral-sizing-box');
+    var windowWidth = $spiralSizingBox.width();
+    var windowHeight = windowWidth
+
   }
 }
 
 
-fibonacci.populateNumberArray();
-fibonacci.determineSize();
-fibonacci.populateSpiralChunkList();
-fibonacci.drawSpiralChunks();
+
+$(function(){
+  fibonacci.populateNumberArray();
+  fibonacci.determineSize();
+  fibonacci.populateSpiralChunkList();
+  fibonacci.drawSpiralChunks();
+
+  $(window).on('resize', fibonacci.onWindowResize);
+
+})
+
+//TODO implement appropriate border radii
+//TODO fix setSpiralChunkPosition and make it less awful
+//TODO get the content centered in the body so there is a gutter on both sides
+//TODO try putting hover classes on the divs to see what they do
+//TODO add window resize event listener
+//TODO add debounce function on window resize
