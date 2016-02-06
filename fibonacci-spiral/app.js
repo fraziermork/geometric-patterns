@@ -5,8 +5,10 @@ function SpiralChunk(iterator, sidelength, direction, borderColor){
   this.borderColor = borderColor;
   this.verticalPositionType = null;
   this.verticalPosition = 0;
+  this.absVerticalPosition = 0;
   this.horizontalPositionType = null;
   this.horizontalPosition = 0;
+  this.absHorizontalPosition = 0;
 }
 SpiralChunk.prototype.initializeDivTypeAndIds = function(){
   this['spiral-chunk-wrapper-id'] = 'spiral-chunk-wrapper-' + this.spiralChunkNumber;
@@ -16,6 +18,10 @@ SpiralChunk.prototype.initializeDivTypeAndIds = function(){
   } else {
     console.log('critical error--direction not recognized');
   }
+  this.boxSize = fibonacci.scale * this.sidelength;
+  this.percentSize = (100 * this.sidelength / fibonacci.totalWidth).toString() + '%';
+  // this.percentSize = '50%';
+  console.log('percent width for ' + this['spiral-chunk-wrapper-id'] + ' is ' + this.percentSize);
 }
 
 var fibonacci = {
@@ -60,8 +66,7 @@ var fibonacci = {
   },
 
   populateSpiralChunkList: function(){
-    // var $spiralHolder = $('#spiral-holder');
-    // var template = Handlebars.compile( $('#spiral-chunk-template').html() );
+
     var topPos = 0, leftPos = 0, bottomPos = 0, rightPos = 0;
     for (var i = 0; i < fibonacci.numberArray.length; i++){
       var currentSpiralChunk = new SpiralChunk( i, fibonacci.numberArray[i], fibonacci.direction, 'black');
@@ -70,10 +75,6 @@ var fibonacci = {
       // console.log(currentSpiralChunk);
 
       fibonacci.spiralChunkList.push(currentSpiralChunk);
-      // $spiralHolder.append(template(currentSpiralChunk));
-      // $currentSpiralChunkWrapper = $('#' + currentSpiralChunk['spiral-chunk-wrapper-id'])
-      // $currentSpiralChunkWrapper.css(currentSpiralChunk['horizontalPositionType'], currentSpiralChunk['horizontalPosition']);
-      // $currentSpiralChunkWrapper.css(currentSpiralChunk['verticalPositionType'], currentSpiralChunk['verticalPosition']);
     }
   },
 
@@ -151,11 +152,26 @@ var fibonacci = {
     } else {
       console.log('inputChunk.divType is ' + inputChunk.divType + ' and is inconsistent.');
     }
-    console.log(inputChunk);
+    // console.log(inputChunk);
   },
 
   drawSpiralChunks: function(){
+    var $spiralHolder = $('#spiral-holder');
+    var template = Handlebars.compile( $('#spiral-chunk-template').html() );
     fibonacci.spiralChunkList.forEach(fibonacci.setSpiralChunkPosition);
+    fibonacci.spiralChunkList.forEach(function(inputChunk, idx){
+      console.log(idx);
+      console.log(inputChunk);
+      var newChunk = template(inputChunk);
+      console.log(newChunk);
+      $spiralHolder.append(newChunk);
+      inputChunk.absVerticalPosition = (100 * inputChunk.verticalPosition / fibonacci.totalHeight).toString() + '%';
+      console.log('inputChunk.absVerticalPosition is ' + inputChunk.absVerticalPosition);
+      inputChunk.absHorizontalPosition = (100 * inputChunk.horizontalPosition / fibonacci.totalWidth).toString() + '%';
+      console.log('inputChunk.absHorizontalPosition is ' + inputChunk.absHorizontalPosition);
+      $('#' + inputChunk['spiral-chunk-wrapper-id']).width(inputChunk.percentSize).css('top', inputChunk.absVerticalPosition).css('left', inputChunk.absHorizontalPosition);
+      // $('#' + inputChunk['spiral-chunk-wrapper-id']).width(inputChunk.boxSize).css('top', function(){ return inputChunk.verticalPosition * fibonacci.scale}).css('left', function(){ return inputChunk.horizontalPosition * fibonacci.scale});
+    })
   }
 }
 
@@ -164,70 +180,3 @@ fibonacci.populateNumberArray();
 fibonacci.determineSize();
 fibonacci.populateSpiralChunkList();
 fibonacci.drawSpiralChunks();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //set vertical positions
-
-// if (currentSpiralChunk.divType === 'top' || currentSpiralChunk.divType === 'left'){
-//   currentSpiralChunk.verticalPositionType = 'top';
-//   if (currentSpiralChunk.divType === 'top'){
-//     var j = i;
-//   } else if (currentSpiralChunk.divType === 'left'){
-//     var j = i - 1;
-//   }
-//   for (j; j < fibonacci.numberArray.length ; j+=4){
-//     topPos += fibonacci.numberArray[j]
-//   }
-// }
-//
-// //set horizontal positions
-// if (currentSpiralChunk.divType === 'left' || currentSpiralChunk.divType === 'bottom'){
-//   currentSpiralChunk.horizontalPositionType = 'left';
-//   if (currentSpiralChunk.divType === 'left'){
-//     var j = i;
-//   } else if (currentSpiralChunk.divType === 'bottom'){
-//     var j = i - 1;
-//   }
-//   for (j; j < fibonacci.numberArray.length ; j+=4){
-//     leftPos += fibonacci.numberArray[j]
-//   }
-// }
-// if (currentSpiralChunk.divType === 'right' || currentSpiralChunk.divType === 'top'){
-//   currentSpiralChunk.horizontalPositionType = 'right';
-//   if (currentSpiralChunk.divType === 'top'){
-//     var j = i;
-//   } else if (currentSpiralChunk.divType === 'right'){
-//     var j = i - 1;
-//   }
-//   for (j; j < fibonacci.numberArray.length ; j+=4){
-//     rightPos += fibonacci.numberArray[j]
-//   }
-// }
-// console.log('topPos is ' + topPos);
-// console.log('bottomPos is ' + bottomPos);
-// console.log('leftPos is ' + leftPos);
-// console.log('rightPos is ' + rightPos);

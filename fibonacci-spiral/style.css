@@ -7,26 +7,37 @@
 }
 body {
   width: 100%;
-  height: 900px;
+  /*height: 900px;*/
 }
 .spiral-holder{
   width: 90%;
-  /*position: relative;*/
+  position: relative;
   /*height: 100%;*/
 }
 
 .spiral-chunk-wrapper{
-  position: relative;
-  height: 0;
+  position: absolute;
+  border-collapse: collapse;
+  /*display: block;*/
+  /*height: 0;*/
+
+}
+.spiral-chunk-wrapper:before{
+  content: "";
+  display: block;
   padding-bottom: 100%;
+  margin: 0;
 }
 
+
+
 .spiral-chunk{
+  outline: 1px black solid;
   position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /*#spiral-0{
