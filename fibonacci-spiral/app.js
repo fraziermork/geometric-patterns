@@ -22,7 +22,7 @@ SpiralChunk.prototype.initializeDivTypeAndIds = function(){
   // this.boxSize = fibonacci.scale * this.sidelength;
   this.percentSize = (0.9 * 100 * this.sidelength / fibonacci.totalWidth);
   // this.percentSize = '50%';
-  console.log('percent width for ' + this['spiral-chunk-wrapper-id'] + ' is ' + this.percentSize);
+  // console.log('percent width for ' + this['spiral-chunk-wrapper-id'] + ' is ' + this.percentSize);
 }
 
 var fibonacci = {
@@ -63,8 +63,8 @@ var fibonacci = {
       fibonacci.totalWidth = fibonacci.numberArray[0];
     }
     fibonacci.aspectRatio = Math.ceil(fibonacci.totalHeight/fibonacci.totalWidth);
-    console.log('fibonacci.totalHeight is ' + fibonacci.totalHeight);
-    console.log('fibonacci.totalWidth is ' + fibonacci.totalWidth);
+    // console.log('fibonacci.totalHeight is ' + fibonacci.totalHeight);
+    // console.log('fibonacci.totalWidth is ' + fibonacci.totalWidth);
   },
 
   populateSpiralChunkList: function(){
@@ -158,15 +158,15 @@ var fibonacci = {
     var template = Handlebars.compile( $('#spiral-chunk-template').html() );
     fibonacci.spiralChunkList.forEach(fibonacci.setSpiralChunkPosition);
     fibonacci.spiralChunkList.forEach(function(inputChunk, idx){
-      console.log(idx);
-      console.log(inputChunk);
+      // console.log(idx);
+      // console.log(inputChunk);
       var newChunk = template(inputChunk);
-      console.log(newChunk);
+      // console.log(newChunk);
       $spiralHolder.append(newChunk);
       inputChunk.absVerticalPosition = (0.9 * 100 * inputChunk.verticalPosition / fibonacci.totalWidth);
-      console.log('inputChunk.absVerticalPosition is ' + inputChunk.absVerticalPosition);
+      // console.log('inputChunk.absVerticalPosition is ' + inputChunk.absVerticalPosition);
       inputChunk.absHorizontalPosition = (0.9 *100 * inputChunk.horizontalPosition / fibonacci.totalWidth);
-      console.log('inputChunk.absHorizontalPosition is ' + inputChunk.absHorizontalPosition);
+      // console.log('inputChunk.absHorizontalPosition is ' + inputChunk.absHorizontalPosition);
       var unit = 'vw'
       $('#' + inputChunk['spiral-chunk-wrapper-id']).width( inputChunk.percentSize + unit ).css('top', inputChunk.absVerticalPosition + unit).css('left', inputChunk.absHorizontalPosition + unit);
       if (idx !== 0){
@@ -175,25 +175,49 @@ var fibonacci = {
       // $('#' + inputChunk['spiral-chunk-wrapper-id']).width(inputChunk.boxSize).css('top', function(){ return inputChunk.verticalPosition * fibonacci.scale}).css('left', function(){ return inputChunk.horizontalPosition * fibonacci.scale});
     })
   },
-  onWindowResize(){
-    console.log('resize');
-    $spiralSizingBox = $('spiral-sizing-box');
-    var windowWidth = $spiralSizingBox.width();
-    var windowHeight = windowWidth
+
+  drawElements: function(){
+    // var $spiralHolder = $('#spiral-holder');
+    $('#spiral-holder').append('<h3 class="main-title-small" id="main-title-small">Frazier Mork</h3>');
+    $('#spiral-chunk-5').append('<nav class="hamburger-navbar"><a href="" class="navbar-link"><h3 class="icon-menu"></h3></a></nav>');
+    var navTemplate = Handlebars.compile( $('#navbar-template').html() );
+    console.log(navTemplate);
+    $('.hamburger-navbar').append(navTemplate);
+
+    $('#spiral-chunk-8').append()
+  },
+
+
+
+  initialize: function(){
+    fibonacci.populateNumberArray();
+    fibonacci.determineSize();
+    fibonacci.populateSpiralChunkList();
+    fibonacci.drawSpiralChunks();
+    fibonacci.drawElements();
+
 
   }
+
+
+  // onWindowResize(){
+  //   console.log('resize');
+  //   $spiralSizingBox = $('spiral-sizing-box');
+  //   var windowWidth = $spiralSizingBox.width();
+  //   var windowHeight = windowWidth;
+  //
+  // }
 }
 
 
 
 $(function(){
-  fibonacci.populateNumberArray();
-  fibonacci.determineSize();
-  fibonacci.populateSpiralChunkList();
-  fibonacci.drawSpiralChunks();
-
-  $(window).on('resize', fibonacci.onWindowResize);
-
+  // fibonacci.populateNumberArray();
+  // fibonacci.determineSize();
+  // fibonacci.populateSpiralChunkList();
+  // fibonacci.drawSpiralChunks();
+  // $(window).on('resize', fibonacci.onWindowResize);
+  fibonacci.initialize();
 })
 
 //TODO implement appropriate border radii

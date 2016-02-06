@@ -1,20 +1,44 @@
-.spiral-div {
-  outline: 1px black solid;
+.main-navbar{
+  position: relative;
+}
+.navbar-list{
+  display: none;
+  padding: 0;
+  list-style-type: none;
   position: absolute;
-  border: 2px black solid;
-  margin: 10px;
-  border-collapse: collapse;
+  background-color: white;
+  z-index: 2;
+  margin: 0;
+  top: 105%;
+  right: 0;
+  text-align: center;
+  /*outline: 1px black solid;*/
+  width: 162%;
+  border-radius: 10px;
+}
+.icon-menu{
+  position: absolute;
+  margin: 0px;
+  padding: 10px 10px;
+  padding-bottom: 40px;
+}
+
+.navbar-text{
+  margin: 0;
+  padding: 10% 10%;
+}
+
+.hamburger-navbar:hover .navbar-list{
+  display: block;
 }
 
 .spiral-sizing-box{
   width: 90%;
+  /*z-index: -1;*/
 }
-.invisible-sizing-div{
-  position: absolute;
-  display: block;
-  padding-bottom: 162%;
-  margin: 0;
-  height: 0;
+.navbar-link{
+  text-decoration: none;
+  color: inherit;
 }
 
 html, body {
@@ -26,14 +50,18 @@ html, body {
   /*height: 900px;*/
 }
 .spiral-holder{
+  display: flex;
   width: 100%;
   height: 100%;
   position: relative;
+  justify-content: center;
+  /*z-index: -1;*/
   /*height: 100%;*/
 }
 
 .spiral-chunk-wrapper{
   position: absolute;
+  /*z-index: inherit;*/
   /*display: block;*/
   /*height: 0;*/
 }
@@ -46,8 +74,9 @@ html, body {
 }
 
 .spiral-chunk{
-  outline: 1px black solid;
-  border: 1px black solid;
+  /*z-index: inherit;*/
+  outline: 1px white solid;
+  border: 1px white solid;
   border-collapse: collapse;
   position: absolute;
   top: 0;
@@ -69,66 +98,153 @@ html, body {
   border-width: 0px 2px 2px 0px;
 }
 
-/*#spiral-chunk-7{
-  background-color: red;
+/*#spiral-chunk-8{
+  outline: 1px black solid;
+  outline-width: 1px 1px 0px 0px;
 }*/
 
+
+
+.main-title-small{
+  padding: 10px;
+  background-color: white;
+  z-index: 1;
+  text-align: center;
+  /*width: 100%;*/
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+/*from type-scale.com*/
+html {font-size: 1em;}
+
+body {
+  background-color: #324152;
+  font-family: Raleway, sans-serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #333;
+}
+
+p {margin-bottom: 1.3em;}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 6.854em;
+}
+
+h2 {font-size: 4.236em;}
+
+h3 {font-size: 2.3em;}
+
+h4 {font-size: 1.618em;}
+
+small, .font_small {font-size: 0.618em;}
+
+#spiral-chunk-0{
+  background-color: #C1836A;
+}
+#spiral-chunk-1{
+  background-color: #DEA667;
+}
+#spiral-chunk-2{
+  background-color: #47535E;
+}
+#spiral-chunk-3{
+  background-color: #796466;
+}
+#spiral-chunk-4{
+  background-color: #C1836A;
+}
+#spiral-chunk-5{
+  background-color: #FFECA7;
+}
+#spiral-chunk-6{
+  background-color: #47535E;
+}
+#spiral-chunk-7{
+  background-color: #796466;
+}
+#spiral-chunk-8{
+  background-color: #C1836A;
+}
+
+
+/*.spiral-div {
+  outline: 1px black solid;
+  position: absolute;
+  border: 2px black solid;
+  margin: 10px;
+  border-collapse: collapse;
+}*/
 /*#spiral-0{
   top: 150px;
   left: 240px;
   height: 8px;
   width: 8px;
-}
-#spiral-1{
+}*/
+/*#spiral-1{
   top: 150px;
   left: 250px;
   height: 8px;
   width: 8px;
   border-bottom-right-radius: 10px
-}
-#spiral-2{
+}*/
+/*#spiral-2{
   top: 130px;
   left: 240px;
   height: 18px;
   width: 18px;
   border-top-right-radius: 20px;
-}
-#spiral-3{
+}*/
+/*#spiral-3{
   top: 130px;
   left: 210px;
   height: 28px;
   width: 28px;
   border-top-left-radius:30px;
-}
-#spiral-4{
+}*/
+/*#spiral-4{
   top: 160px;
   left: 210px;
   height:48px;
   width: 48px;
   border-bottom-left-radius: 50px;
-}
-#spiral-5{
+}*/
+/*#spiral-5{
   top: 130px;
   left: 260px;
   height: 78px;
   width: 78px;
   border-bottom-right-radius: 80px;
-}
-#spiral-6{
+}*/
+/*#spiral-6{
   top: 0px;
   left: 210px;
   height: 128px;
   width: 128px;
   border-top-right-radius: 130px;
-}
-#spiral-7{
+}*/
+/*#spiral-7{
   top: 0px;
   left: 0px;
   height: 208px;
   width: 208px;
   border-top-left-radius: 210px;
-}
-#spiral-8{
+}*/
+/*#spiral-8{
   top: 210px;
   left: 0px;
   height:338px;
